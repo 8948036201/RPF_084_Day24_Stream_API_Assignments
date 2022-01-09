@@ -33,6 +33,7 @@ public class AddressBook {
 				break;
 
 			case "2":
+				showContacts();
 				break;
 
 			case "3":
@@ -44,6 +45,8 @@ public class AddressBook {
 				break;
 
 			case "5":
+				isExit = true;
+				showContacts();
 				break;
 
 			default:
@@ -137,6 +140,16 @@ public class AddressBook {
 			System.out.println("No contact found with name " + firstName + ".");
 		} else {
 			System.out.println(deleteContact.getFirstName() + "'s contact has been removed from your Address Book.");
+		}
+	}
+
+	private static void showContacts() {
+		if (addressBook.isEmpty()) {
+			System.out.println("Address book is empty.");
+		} else {
+			for (Contact contact : addressBook) {
+				System.out.println(contact);
+			}
 		}
 	}
 
