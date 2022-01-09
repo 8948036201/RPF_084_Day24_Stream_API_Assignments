@@ -36,6 +36,7 @@ public class AddressBook {
 				break;
 
 			case "3":
+				editContact(scanner);
 				break;
 
 			case "4":
@@ -84,6 +85,40 @@ public class AddressBook {
 
 		addressBook.add(contact);
 		System.out.println("Contact has been saved.");
+	}
+
+	private static void editContact(Scanner scanner) {
+		System.out.println("Which contact you want to Edit? (Enter the First name)");
+		String firstName = scanner.nextLine();
+
+		Contact editContact = null;
+		for (int i = 0; i < addressBook.size(); i++) {
+			if (firstName.equals(addressBook.get(i).getFirstName())) {
+				editContact = addressBook.get(i);
+			}
+		}
+
+		if (editContact == null) {
+			System.out.println("No contact found with name " + firstName + ".");
+		} else {
+			editContactDetails(editContact, scanner);
+		}
+	}
+
+	private static void editContactDetails(Contact editContact, Scanner scanner) {
+		System.out.println("Enter First Name: ");
+		String firstName = scanner.nextLine();
+		editContact.setFirstName(validateFirstName(firstName, scanner));
+
+		System.out.println("Enter Your Email: ");
+		String email = scanner.nextLine();
+		editContact.setEmail(validateEmail(email, scanner));
+
+		System.out.println("Enter Phone Number: ");
+		String phoneNumber = scanner.nextLine();
+		editContact.setPhoneNumber(validatePhone(phoneNumber, scanner));
+
+		System.out.println("Contact has been edited.");
 	}
 
 	public static String validateFirstName(String firstName, Scanner scanner) {
